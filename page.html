@@ -4,20 +4,20 @@
     <base target="_top">
   </head>
     <body>
-    
+
         <input type="file" id="file">
         <input type="button" onclick="uploadImage();" value="Upload">
         <br /><br />
         <img id="img" />
-  
-    <!-- ==========JAVASCRIPT========== -->
-    
+
+    <!-- ==========JAVASCRIPT RE-EDITED========== -->
+
         <?!= include('firebase'); ?>
         <script>
-        
+
               //write your script here
               var storage = firebase.storage();
-              
+
               //upload file
               function uploadImage(){
                 var fileupload = document.getElementById('file').files[0];
@@ -26,28 +26,26 @@
                 alert('Uploaded a blob or file!');
                 });
               }
-            
-              
+
+
               // Create a reference to the file we want to download
               var storageRef = storage.ref();
               var imageRef = storageRef.child('images/profile');
-              
+
               // take the snapshot of the data in storage
               imageRef.getDownloadURL().then(function(url){
-                 
+
                   //output the url to img tag in the body
                   document.getElementById('img').src=url;
-                     
+
               }).catch(function(error) {
-              
+
                   //catch if any errors occur while downloading the file
                   console.error(error);
-                  
+
               });
-        
+
         </script>
-     
+
     </body>
 </html>
-
-
